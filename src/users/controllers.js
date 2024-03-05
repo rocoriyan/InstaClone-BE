@@ -28,18 +28,9 @@ const login = async (req, res) => {
     try {
         const user = {
             username: req.user.username,
-            id: req.user.Id,
+            id: req.user.id,
         };
-        res.status(201).json({ message: `successfully logged in as ${user.username}`, data: user });
-    }
-    catch (error) {
-        res.status(500).json({ message: error.message, error: error });
-    }
-}
-
-const getOneUser = async (req, res) => {
-    try {
-        res.status(201).json({ message: "login successful", user: req.user });
+        res.status(201).json({ message: `successfully logged in as ${user.username}`, user: user });
     }
     catch (error) {
         res.status(500).json({ message: error.message, error: error });
@@ -50,5 +41,4 @@ module.exports = {
     signupUser: signupUser,
     listUsers: listUsers,
     login: login,
-    getOneUser: getOneUser,
 };

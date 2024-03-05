@@ -39,9 +39,14 @@ const displaySinglePost = async(req, res)=>{
 /*const deletePost = async(req, res)=>{
     try{
         const post = await Post.findOne({ where: postId = req.body.postId }); //idk if this works
-        //you should check that the user logged in is the one that made the post here
-        await Post.destroy(post);
-        res.send({ message: "Post successfully deleted"});
+        if(post.UserId == req.body.user.id)
+        {
+            await Post.destroy(post);
+            res.send({ message: "Post successfully deleted"});
+        }
+        else{
+            res.sent({ message: "Error: Post does not belong to user signed in" })
+        }
     }
     catch(error){
         res.status(500).json({ message: error.message, error: error });
